@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const fs = require('fs');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,11 +12,11 @@ const mix = require('laravel-mix');
  |
  */
 
- let theme = process.env.npm_config_theme;
+let theme = process.env.npm_config_theme;
 
- if(theme) {
-    require(`${__dirname}/themes/${theme}/webpack.mix.js`);
- } else {
-     // default theme to compile if theme is not specified
-   require(`${__dirname}/themes/theme-name/webpack.mix.js`);
- }
+if (theme && fs.existsSync(`${__dirname}/themes/${theme}/webpack.mix.js`)) {
+  require(`${__dirname}/themes/${theme}/webpack.mix.js`);
+} else {
+  // default theme to compile if theme is not specified or does not exist
+  require(`${__dirname}/themes/admin/webpack.mix.js`);
+}
