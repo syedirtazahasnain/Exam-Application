@@ -4,16 +4,16 @@
 
     <!-- /.content-header -->
      <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
+    <div class="content-wrapper" >
+      <div class="container-fluid p-3" style="background: white;">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Exams</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+            <ol class="breadcrumb float-sm-right my-0 bg-white">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Exam</li>
             </ol>
@@ -21,7 +21,7 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
 
-      <section class="content">
+      <section class="content py-3 my-3">
         <div class="container-fluid">
           <div class="row">
             <div class="col-12">

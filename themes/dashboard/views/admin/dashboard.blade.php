@@ -5,14 +5,14 @@
      <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
+    <div class="">
+      <div class="container-fluid" >
+        <div class="row mb-2 p-3" style="background: white;">
           <div class="col-sm-6">
             <h1 class="m-0">Admin</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+            <ol class="breadcrumb float-sm-right my-0 bg-white">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Admin</li>
             </ol>
@@ -26,7 +26,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class=" bg-white m-3 p-3 " >
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">

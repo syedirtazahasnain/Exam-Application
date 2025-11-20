@@ -3,9 +3,9 @@
 @section('content')
 
      <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" >
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <div class="content-header " style="background: white;">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
@@ -26,7 +26,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="container-fluid py-3 my-3">
         <!-- Small boxes (Stat box) -->
 
         <div class="row">
@@ -37,7 +37,7 @@
               
               if(strtotime(date('Y-m-d')) > strtotime($exam['exam_date']))
               {
-                  $cls="bg-danger";
+                  $cls="bg-white";
               }
               else
               {

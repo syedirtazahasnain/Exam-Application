@@ -12,6 +12,7 @@ const fs = require('fs');
  |
  */
 
+
 let theme = process.env.npm_config_theme;
 
 if (theme && fs.existsSync(`${__dirname}/themes/${theme}/webpack.mix.js`)) {

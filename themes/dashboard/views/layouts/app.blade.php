@@ -7,7 +7,127 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> @yield('title')</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+        font-family: 'Poppins', sans-serif !important;
+    }
+    
+    /* Sidebar Active Link Styling */
+    .nav-sidebar .nav-link.active {
+        background-color: #4353b9 !important;
+        color: white !important;
+        border-radius: 8px;
+        margin: 2px 8px;
+        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(0, 174, 239, 0.3);
+        transform: translateX(5px);
+        transition: all 0.3s ease;
+    }
 
+    .nav-sidebar .nav-link.active i {
+        color: white !important;
+        transform: scale(1.1);
+    }
+
+    .nav-sidebar .nav-link {
+        color: white !important;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        margin: 2px 8px;
+        padding: 10px 15px;
+    }
+
+    .nav-sidebar .nav-link i {
+        color: rgba(255,255,255,0.8) !important;
+        transition: all 0.3s ease;
+    }
+
+    .nav-sidebar .nav-link:hover:not(.active) {
+        background-color: rgba(0, 174, 239, 0.15) !important;
+        transform: translateX(3px);
+    }
+
+    /* Sidebar Brand Logo Styling */
+    .brand-link {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .brand-text {
+        font-weight: 600 !important;
+        letter-spacing: 0.5px;
+    }
+
+    /* Glass Morphism Navbar */
+    .main-header.navbar {
+        background: rgba(255, 255, 255, 0.25) !important;
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .main-header .navbar-nav .nav-link {
+        color: #2d3748 !important;
+        font-weight: 500;
+        margin: 0 3px;
+        padding: 8px 15px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .main-header .navbar-nav .nav-link:hover {
+        background: rgba(255,255,255,0.4);
+        color: #1a365d !important;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .main-header .navbar-nav .nav-link i {
+        color: #4a5568;
+    }
+
+    .navbar-badge {
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+    }
+
+    /* Search */
+    .navbar-search-block {
+        background: rgba(255,255,255,0.3);
+        backdrop-filter: blur(15px);
+    }
+
+    .form-control-navbar {
+        background: rgba(255,255,255,0.6);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+    }
+
+    /* Dropdown */
+    .dropdown-menu {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        border-radius: 15px;
+    }
+
+    .dropdown-item {
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+
+    .dropdown-item:hover {
+        background: rgba(74, 85, 104, 0.1);
+        transform: translateX(5px);
+    }
+  </style>
   
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -35,10 +155,7 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{url('assets/dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
+  
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -178,106 +295,62 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar elevation-4" style="background: #2B3990;">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <span class="brand-text font-weight-light">Online Examination</span>
+     <a href="index3.html" class="brand-link">
+      <img  src="{{url('assets/dist/img/AdminLTELogo.webp')}}" alt="AdminLTELogo" style="padding: 12px; width: 218px;">
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-
-      <!-- SidebarSearch Form -->
-      
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          
-            <li class="nav-item">
-                <a href="{{ url('admin/dashboard')}}" class="nav-link">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                    Dashboard
-                    </p>
-                </a>
-            </li>
+          @php
+              $currentUrl = url()->current();
+          @endphp
 
-            <li class="nav-item">
-                <a href="{{ url('admin/exam_category')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Category</p>
-                </a>
-            </li>
+         <li class="nav-item">
+    <a href="{{ url('admin/dashboard')}}" class="nav-link {{ $currentUrl == url('admin/dashboard') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>Dashboard</p>
+    </a>
+</li>
 
-            <li class="nav-item">
-              <a href="{{ url('admin/manage_exam')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Manage Exam</p>
-              </a>
-          </li>
+<li class="nav-item">
+    <a href="{{ url('admin/exam_category')}}" class="nav-link {{ str_contains($currentUrl, 'exam_category') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-layer-group"></i>
+        <p>Category</p>
+    </a>
+</li>
 
-          <li class="nav-item">
-            <a href="{{ url('admin/manage_students')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Students</p>
-            </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ url('admin/registered_students')}}" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Registered students</p>
-          </a>
-      </li>
-        <li class="nav-item">
-          <a href="{{ url('admin/logout')}}" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Logout</p>
-          </a>
-      </li>
-            <!--
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Widgets
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li> -->
-          
+<li class="nav-item">
+    <a href="{{ url('admin/manage_exam')}}" class="nav-link {{ str_contains($currentUrl, 'manage_exam') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-clipboard-list"></i>
+        <p>Manage Exam</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="{{ url('admin/manage_students')}}" class="nav-link {{ str_contains($currentUrl, 'manage_students') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-users"></i>
+        <p>Students</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="{{ url('admin/registered_students')}}" class="nav-link {{ str_contains($currentUrl, 'registered_students') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-user-check"></i>
+        <p>Registered Students</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="{{ url('admin/logout')}}" class="nav-link">
+        <i class="nav-icon fas fa-sign-out-alt"></i>
+        <p>Logout</p>
+    </a>
+</li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -285,15 +358,8 @@
     <!-- /.sidebar -->
   </aside>
 
- 
-
- 
-
-     @yield('content')
-
-
-  <!-- /.content-wrapper -->
-  
+  <!-- Content -->
+  @yield('content')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
