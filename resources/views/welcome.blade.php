@@ -514,7 +514,7 @@
           <li><a href="#how-it-works" class="btn px-0 border-none" style="padding-left: 0px; padding-right:0px;">How It Works</a></li>
           <li><a href="#pricing" class="btn px-0 border-none" style="padding-left: 0px; padding-right:0px;">Pricing</a></li>
           <li><a href="#contact" class="btn px-0 border-none" style="padding-left: 0px; padding-right:0px;">Contact</a></li>
-          <li><a href="{{ url('/admin/login') }}" class="btn btn-outline">Admin Login</a></li>
+          {{-- <li><a href="{{ url('/admin/login') }}" class="btn btn-outline">Admin Login</a></li> --}}
         </ul>
 
         <button class="mobile-menu-btn">

@@ -107,7 +107,7 @@
                                 <!-- Score Cards -->
                                 <div class="row mb-4">
                                     <div class="col-md-4 mb-3">
-                                        <div class="text-center p-4 rounded shadow-sm" style="background: linear-gradient(135deg, #28a745, #20c997); color: white;">
+                                        <div class="text-center p-4 rounded shadow-sm" style="background: rgba(0, 174, 239); color: white;">
                                             <div class="score-icon mb-3">
                                                 <i class="fas fa-check-circle fa-2x"></i>
                                             </div>
@@ -117,7 +117,7 @@
                                     </div>
                                     
                                     <div class="col-md-4 mb-3">
-                                        <div class="text-center p-4 rounded shadow-sm" style="background: linear-gradient(135deg, #dc3545, #e83e8c); color: white;">
+                                        <div class="text-center p-4 rounded shadow-sm" style="background: rgba(220, 53, 69); color: white;">
                                             <div class="score-icon mb-3">
                                                 <i class="fas fa-times-circle fa-2x"></i>
                                             </div>
@@ -127,7 +127,7 @@
                                     </div>
                                     
                                     <div class="col-md-4 mb-3">
-                                        <div class="text-center p-4 rounded shadow-sm" style="background: linear-gradient(135deg, #2B3990, #00aeef); color: white;">
+                                        <div class="text-center p-4 rounded shadow-sm" style="background: rgba(43, 57, 144); color: white;">
                                             <div class="score-icon mb-3">
                                                 <i class="fas fa-list-alt fa-2x"></i>
                                             </div>
