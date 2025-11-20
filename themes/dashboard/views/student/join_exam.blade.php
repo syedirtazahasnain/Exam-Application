@@ -33,7 +33,7 @@
             <div class="col-12">
               <!-- Default box -->
               <div class="card">
-                
+
                 <div class="card-body">
                    <div class="row">
                        <div class="col-sm-4">
@@ -42,7 +42,7 @@
                        <div class="col-sm-4">
                            <h3><b>Timer</b> :  <span class="js-timeout" id="timer">{{ $exam['exam_duration']}}:00</span></h3>
                        </div>
-                       
+
                         <div class="col-sm-4">
                             <h3 class="text-right"><b>Status</b> :Running</h3>
                         </div>
@@ -52,7 +52,7 @@
               </div>
               <!-- /.card -->
               <div class="card mt-4">
-                
+
                 <div class="card-body">
 
                   <form action="{{url('student/submit_questions')}}" method="POST">
@@ -63,7 +63,7 @@
                         @foreach ($question as $key=>$q)
                             <div class="col-sm-12 mt-4">
                               <p>{{$key+1}}. {{ $q->questions}}</p>
-                              <?php 
+                              <?php
                                     $options = json_decode(json_decode(json_encode($q->options)),true);
                               ?>
                               <input type="hidden" name="question{{$key+1}}" value="{{$q['id']}}">
@@ -77,8 +77,8 @@
                               </ul>
                             </div>
                         @endforeach
-                        
-                        
+
+
 
                           <div class="col-sm-12">
                             <input type="hidden" name="index" value="{{ $key+1}}">
@@ -86,7 +86,7 @@
                           </div>
                    </div>
                   </form>
-                  
+
                 </div>
                 <!-- /.card-body -->
               </div>
@@ -97,8 +97,4 @@
     </div>
     <!-- /.content-header -->
 
-    <!-- Modal -->
-
-
- 
 @endsection

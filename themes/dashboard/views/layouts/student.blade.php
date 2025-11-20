@@ -10,7 +10,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
+
   <style>
     /* Apply beautiful font to entire website */
     body {
@@ -124,7 +124,7 @@
         background: #f8f9fa;
     }
   </style>
-  
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -150,7 +150,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  
+
 
   <!-- Navbar -->
   <style>
@@ -263,7 +263,7 @@
         padding: 6px 8px;
         font-size: 14px;
     }
-    
+
     .navbar-search-block {
         margin-top: 10px;
     }
@@ -279,7 +279,7 @@
             </a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link">Home</a>
+            <a href="{{ url('/') }}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
@@ -330,7 +330,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ url('/') }}" class="brand-link">
            <img  src="{{url('assets/dist/img/AdminLTELogo.webp')}}" alt="AdminLTELogo" style="padding: 12px; width: 218px;">
 
     </a>
@@ -349,15 +349,15 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Dashboard</p>
             </a>
-          </li> 
+          </li>
 
           <li class="nav-item">
             <a href="{{ url('student/exam')}}" class="nav-link {{ str_contains($currentUrl, 'student/exam') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-alt"></i>
               <p>Exams</p>
             </a>
-          </li> 
-        
+          </li>
+
           <li class="nav-item">
             <a href="{{ url('student/logout')}}" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -424,7 +424,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('.datatable').dataTable();
-        
+
         // Add smooth scrolling and animations
         $('.nav-link').on('click', function() {
             $('.nav-link').removeClass('active');

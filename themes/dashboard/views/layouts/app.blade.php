@@ -7,15 +7,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> @yield('title')</title>
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
+
   <style>
     body {
         font-family: 'Poppins', sans-serif !important;
     }
-    
+
     /* Sidebar Active Link Styling */
     .nav-sidebar .nav-link.active {
         background-color: #4353b9 !important;
@@ -128,7 +128,7 @@
         transform: translateX(5px);
     }
   </style>
-  
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -155,7 +155,7 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  
+
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -297,7 +297,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar elevation-4" style="background: #2B3990;">
     <!-- Brand Logo -->
-     <a href="index3.html" class="brand-link">
+     <a href="{{ url('/') }}" class="brand-link">
       <img  src="{{url('assets/dist/img/AdminLTELogo.webp')}}" alt="AdminLTELogo" style="padding: 12px; width: 218px;">
     </a>
 
