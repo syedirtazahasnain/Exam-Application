@@ -452,12 +452,6 @@
                                 </button>
                             </div>
 
-                            <div class="password-strength">
-                                <div class="password-strength-bar" id="password-strength-bar"></div>
-                            </div>
-
-                           
-
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -510,194 +504,113 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const passwordInput = document.getElementById('password');
-            const confirmPasswordInput = document.getElementById('password-confirm');
-            const togglePassword = document.getElementById('togglePassword');
-            const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-            const strengthBar = document.getElementById('password-strength-bar');
-            const registerBtn = document.getElementById('register-btn');
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('password-confirm');
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        const registerBtn = document.getElementById('register-btn');
+
+        // Password visibility toggle
+        function setupPasswordToggle(toggle, input) {
+            const eyeIcon = toggle.querySelector('.eye-icon');
+            const eyeSlashIcon = toggle.querySelector('.eye-slash-icon');
             
-            const requirements = {
-                length: document.getElementById('length-req'),
-                uppercase: document.getElementById('uppercase-req'),
-                lowercase: document.getElementById('lowercase-req'),
-                number: document.getElementById('number-req')
-            };
-
-            // Password visibility toggle
-            function setupPasswordToggle(toggle, input) {
-                const eyeIcon = toggle.querySelector('.eye-icon');
-                const eyeSlashIcon = toggle.querySelector('.eye-slash-icon');
+            toggle.addEventListener('click', function() {
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
                 
-                toggle.addEventListener('click', function() {
-                    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-                    input.setAttribute('type', type);
-                    
-                    if (type === 'password') {
-                        eyeIcon.style.display = 'block';
-                        eyeSlashIcon.style.display = 'none';
-                    } else {
-                        eyeIcon.style.display = 'none';
-                        eyeSlashIcon.style.display = 'block';
-                    }
-                });
-            }
-
-            setupPasswordToggle(togglePassword, passwordInput);
-            setupPasswordToggle(toggleConfirmPassword, confirmPasswordInput);
-
-            // Password strength checker
-            passwordInput.addEventListener('input', function() {
-                const password = this.value;
-                let strength = 0;
-                let metRequirements = 0;
-                const totalRequirements = 4;
-
-                // Check requirements
-                if (password.length >= 8) {
-                    strength += 25;
-                    metRequirements++;
-                    requirements.length.classList.remove('unmet');
-                    requirements.length.classList.add('met');
-                    requirements.length.innerHTML = '<i class="fas fa-check-circle"></i> At least 8 characters';
+                if (type === 'password') {
+                    eyeIcon.style.display = 'block';
+                    eyeSlashIcon.style.display = 'none';
                 } else {
-                    requirements.length.classList.remove('met');
-                    requirements.length.classList.add('unmet');
-                    requirements.length.innerHTML = '<i class="fas fa-circle"></i> At least 8 characters';
-                }
-
-                if (/[A-Z]/.test(password)) {
-                    strength += 25;
-                    metRequirements++;
-                    requirements.uppercase.classList.remove('unmet');
-                    requirements.uppercase.classList.add('met');
-                    requirements.uppercase.innerHTML = '<i class="fas fa-check-circle"></i> One uppercase letter';
-                } else {
-                    requirements.uppercase.classList.remove('met');
-                    requirements.uppercase.classList.add('unmet');
-                    requirements.uppercase.innerHTML = '<i class="fas fa-circle"></i> One uppercase letter';
-                }
-
-                if (/[a-z]/.test(password)) {
-                    strength += 25;
-                    metRequirements++;
-                    requirements.lowercase.classList.remove('unmet');
-                    requirements.lowercase.classList.add('met');
-                    requirements.lowercase.innerHTML = '<i class="fas fa-check-circle"></i> One lowercase letter';
-                } else {
-                    requirements.lowercase.classList.remove('met');
-                    requirements.lowercase.classList.add('unmet');
-                    requirements.lowercase.innerHTML = '<i class="fas fa-circle"></i> One lowercase letter';
-                }
-
-                if (/[0-9]/.test(password)) {
-                    strength += 25;
-                    metRequirements++;
-                    requirements.number.classList.remove('unmet');
-                    requirements.number.classList.add('met');
-                    requirements.number.innerHTML = '<i class="fas fa-check-circle"></i> One number';
-                } else {
-                    requirements.number.classList.remove('met');
-                    requirements.number.classList.add('unmet');
-                    requirements.number.innerHTML = '<i class="fas fa-circle"></i> One number';
-                }
-
-                // Update strength bar
-                strengthBar.style.width = strength + '%';
-                
-                if (strength < 50) {
-                    strengthBar.style.backgroundColor = '#ef4444';
-                } else if (strength < 75) {
-                    strengthBar.style.backgroundColor = '#f59e0b';
-                } else {
-                    strengthBar.style.backgroundColor = '#10b981';
-                }
-
-                checkFormValidity();
-            });
-
-            // Password confirmation check
-            confirmPasswordInput.addEventListener('input', function() {
-                checkPasswordMatch();
-                checkFormValidity();
-            });
-
-            function checkPasswordMatch() {
-                const password = passwordInput.value;
-                const confirmPassword = confirmPasswordInput.value;
-                const matchElement = document.getElementById('password-match');
-                
-                if (confirmPassword === '') {
-                    matchElement.innerHTML = '';
-                    confirmPasswordInput.style.borderColor = '';
-                    return;
-                }
-
-                if (password === confirmPassword) {
-                    matchElement.innerHTML = `
-                        <div class="match-success">
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                            </svg>
-                            Passwords match
-                        </div>
-                    `;
-                    confirmPasswordInput.style.borderColor = '#10b981';
-                } else {
-                    matchElement.innerHTML = `
-                        <div class="match-error">
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-                            </svg>
-                            Passwords do not match
-                        </div>
-                    `;
-                    confirmPasswordInput.style.borderColor = '#ef4444';
-                }
-            }
-
-            function checkFormValidity() {
-                const password = passwordInput.value;
-                const confirmPassword = confirmPasswordInput.value;
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                
-                // Check if all requirements are met
-                const metRequirements = document.querySelectorAll('.requirement.met').length;
-                const passwordsMatch = password === confirmPassword && password !== '';
-                
-                if (name && email && password && confirmPassword && metRequirements === 4 && passwordsMatch) {
-                    registerBtn.disabled = false;
-                } else {
-                    registerBtn.disabled = true;
-                }
-            }
-
-            // Form validation
-            const form = document.querySelector('form');
-            form.addEventListener('submit', function(e) {
-                const password = passwordInput.value;
-                const confirmPassword = confirmPasswordInput.value;
-                
-                if (password !== confirmPassword) {
-                    e.preventDefault();
-                    alert('Please make sure your passwords match.');
-                    return;
-                }
-                
-                // Check if all requirements are met
-                const requirements = document.querySelectorAll('.requirement.met');
-                if (requirements.length < 4) {
-                    e.preventDefault();
-                    alert('Please make sure your password meets all requirements.');
-                    return;
+                    eyeIcon.style.display = 'none';
+                    eyeSlashIcon.style.display = 'block';
                 }
             });
+        }
 
-            // Initial form validation
+        setupPasswordToggle(togglePassword, passwordInput);
+        setupPasswordToggle(toggleConfirmPassword, confirmPasswordInput);
+
+        // Password confirmation check
+        confirmPasswordInput.addEventListener('input', function() {
+            checkPasswordMatch();
             checkFormValidity();
         });
-    </script>
+
+        function checkPasswordMatch() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            const matchElement = document.getElementById('password-match');
+            
+            if (confirmPassword === '') {
+                matchElement.innerHTML = '';
+                confirmPasswordInput.style.borderColor = '';
+                return;
+            }
+
+            if (password === confirmPassword) {
+                matchElement.innerHTML = `
+                    <div class="match-success">
+                        <svg viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                        Passwords match
+                    </div>
+                `;
+                confirmPasswordInput.style.borderColor = '#10b981';
+            } else {
+                matchElement.innerHTML = `
+                    <div class="match-error">
+                        <svg viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        Passwords do not match
+                    </div>
+                `;
+                confirmPasswordInput.style.borderColor = '#ef4444';
+            }
+        }
+
+        function checkFormValidity() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Check if all fields are filled and passwords match
+            const passwordsMatch = password === confirmPassword && password !== '';
+            
+            if (name && email && password && confirmPassword && passwordsMatch) {
+                registerBtn.disabled = false;
+            } else {
+                registerBtn.disabled = true;
+            }
+        }
+
+        // Form validation
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(e) {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Please make sure your passwords match.');
+                return;
+            }
+        });
+
+        // Check form validity on all input changes
+        document.getElementById('name').addEventListener('input', checkFormValidity);
+        document.getElementById('email').addEventListener('input', checkFormValidity);
+        passwordInput.addEventListener('input', checkFormValidity);
+        confirmPasswordInput.addEventListener('input', checkFormValidity);
+
+        // Initial form validation
+        checkFormValidity();
+    });
+</script>
 </x-app-layout>

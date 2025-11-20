@@ -39,7 +39,7 @@
 
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 20px;
     }
@@ -504,9 +504,9 @@
       <nav class="navbar">
         <div class="logo">
           <div class="logo-img">
-            <img  src="{{url('assets/dist/img/favicon.webp')}}" alt="AdminLTELogo" style="width: 68px;">
+            <img  src="{{url('assets/dist/img/logoanimation.png')}}" alt="AdminLTELogo" style="width: 218px;">
           </div>
-          <span class="logo-text">247 SkillLab</span>
+          
         </div>
 
         <ul class="nav-links">
