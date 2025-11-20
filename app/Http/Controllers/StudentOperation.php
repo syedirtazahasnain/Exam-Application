@@ -15,7 +15,7 @@ class StudentOperation extends Controller
 {
     //student dashboard
     public function dashboard(){
-        
+
         $data['portal_exams']=Oex_exam_master::select(['oex_exam_masters.*','oex_categories.name as cat_name'])
         ->join('oex_categories','oex_exam_masters.category','=','oex_categories.id')
         ->orderBy('id','desc')->where('oex_exam_masters.status','1')->get()->toArray();
@@ -33,7 +33,7 @@ class StudentOperation extends Controller
             ->where('user_exams.user_id',Session::get('id'))
             ->where('user_exams.std_status','1')
             ->get()->toArray();
-            
+
             return view('student.exam',['student_info'=>$student_info]);
 
     }
@@ -41,7 +41,6 @@ class StudentOperation extends Controller
 
     //join exam page
     public function join_exam($id){
-        
         $question= Oex_question_master::where('exam_id',$id)->get();
 
         $exam=Oex_exam_master::where('id',$id)->get()->first();
@@ -53,7 +52,7 @@ class StudentOperation extends Controller
     //On submit
     public function submit_questions(Request $request){
 
-        
+
         $yes_ans=0;
         $no_ans=0;
         $data= $request->all();
@@ -72,7 +71,7 @@ class StudentOperation extends Controller
                     }
             }
         }
-    
+
        $std_info = user_exam::where('user_id',Session::get('id'))->where('exam_id',$request->exam_id)->get()->first();
        $std_info->exam_joined=1;
        $std_info->update();
@@ -97,7 +96,7 @@ class StudentOperation extends Controller
             $checkuser = user_exam::where('user_id',Session::get('id'))->where('exam_id',$id)->get()->first();
 
             if($checkuser){
-                $arr = array('status'=>'false','message'=>'Already applied, see your exam section');        
+                $arr = array('status'=>'false','message'=>'Already applied, see your exam section');
             }
             else
             {
@@ -107,9 +106,9 @@ class StudentOperation extends Controller
                 $exam_user->exam_id=$id;
                 $exam_user->std_status=1;
                 $exam_user->exam_joined=0;
-        
+
                 $exam_user->save();
-    
+
                 $arr = array('status'=>'true','message'=>'applied successfully','reload'=>url('student/dashboard'));
             }
 
@@ -122,7 +121,7 @@ class StudentOperation extends Controller
     public function view_result($id){
 
             $data['result_info'] = Oex_result::where('exam_id',$id)->where('user_id',Session::get('id'))->get()->first();
-            
+
             $data['student_info'] = User::where('id',Session::get('id'))->get()->first();
 
             $data['exam_info']=Oex_exam_master::where('id',$id)->get()->first();
@@ -133,12 +132,12 @@ class StudentOperation extends Controller
 
     //View answer
     public function view_answer($id){
-        
+
         $data['question']= Oex_question_master::where('exam_id',$id)->get()->toArray();
 
         return view('student.view_amswer',$data);
     }
 
 
-    
+
 }
