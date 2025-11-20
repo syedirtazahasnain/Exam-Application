@@ -380,6 +380,7 @@
                         <div class="login-links mt-3">
                             <p>Don't have an account? <a href="{{ route('register') }}">Register here</a></p>
                         </div>
+                        
                     </form>
                 </div>
             </div>

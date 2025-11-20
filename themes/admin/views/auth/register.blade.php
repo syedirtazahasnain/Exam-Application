@@ -1,222 +1,4 @@
 <x-app-layout>
-    <div class="admin-register-container">
-        <div class="admin-register-card">
-            <!-- Header Section -->
-           <div class="card-header">
-                <div class="logo">
-                    <div class="logo-img">
-                        <img src="{{url('assets/dist/img/logo-light.webp')}}" alt="AdminLTELogo" style="width: 218px;">
-                    </div>
-                    <div class="logo-text">
-                        <span class="main-text"></span>
-                        <span class="sub-text"></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Registration Form -->
-            <div class="card-body">
-                <div class="register-header">
-                    <h1>Create Admin Account</h1>
-                    <p>Set up your administrator credentials</p>
-                </div>
-
-                <form method="POST" action="{{ route('admin.register') }}" class="register-form">
-                    @csrf
-
-                    <div class="form-group">
-                        <label for="name" class="form-label">Full Name</label>
-                        <div class="input-wrapper">
-                            <input id="name" type="text" class="form-input @error('name') error @enderror" name="name"
-                                value="{{ old('name') }}" required autocomplete="name" autofocus
-                                placeholder="Enter your full name">
-                            <div class="input-icon">
-                                <svg viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </div>
-
-                        @error('name')
-                        <div class="error-message">
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <span>{{ $message }}</span>
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email Address</label>
-                        <div class="input-wrapper">
-                            <input id="email" type="email" class="form-input @error('email') error @enderror"
-                                name="email" value="{{ old('email') }}" required autocomplete="email"
-                                placeholder="admin@example.com">
-                            <div class="input-icon">
-                                <svg viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                </svg>
-                            </div>
-                        </div>
-
-                        @error('email')
-                        <div class="error-message">
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <span>{{ $message }}</span>
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password" class="form-label">Password</label>
-                        <div class="input-wrapper">
-                            <input id="password" type="password" class="form-input @error('password') error @enderror"
-                                name="password" required autocomplete="new-password"
-                                placeholder="Create a strong password">
-                            <div class="input-icon">
-                                <svg viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <button type="button" class="password-toggle" id="togglePassword">
-                                <svg class="eye-icon" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    <path fill-rule="evenodd"
-                                        d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <svg class="eye-slash-icon" viewBox="0 0 20 20" fill="currentColor"
-                                    style="display: none;">
-                                    <path fill-rule="evenodd"
-                                        d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
-                                        clip-rule="evenodd" />
-                                    <path
-                                        d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
-                                </svg>
-                            </button>
-                        </div>
-
-                        <div class="password-strength">
-                            <div class="strength-bar">
-                                <div class="strength-fill" id="password-strength-fill"></div>
-                            </div>
-                            <div class="strength-labels">
-                                <span class="strength-label" id="strength-text">Password strength</span>
-                            </div>
-                        </div>
-
-                        <div class="password-requirements">
-                            <div class="requirement" id="length-req">
-                                <svg class="requirement-icon" viewBox="0 0 20 20" fill="currentColor">
-                                    <circle cx="10" cy="10" r="8" />
-                                </svg>
-                                At least 8 characters
-                            </div>
-                            <div class="requirement" id="uppercase-req">
-                                <svg class="requirement-icon" viewBox="0 0 20 20" fill="currentColor">
-                                    <circle cx="10" cy="10" r="8" />
-                                </svg>
-                                One uppercase letter
-                            </div>
-                            <div class="requirement" id="lowercase-req">
-                                <svg class="requirement-icon" viewBox="0 0 20 20" fill="currentColor">
-                                    <circle cx="10" cy="10" r="8" />
-                                </svg>
-                                One lowercase letter
-                            </div>
-                            <div class="requirement" id="number-req">
-                                <svg class="requirement-icon" viewBox="0 0 20 20" fill="currentColor">
-                                    <circle cx="10" cy="10" r="8" />
-                                </svg>
-                                One number
-                            </div>
-                        </div>
-
-                        @error('password')
-                        <div class="error-message">
-                            <svg viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <span>{{ $message }}</span>
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password-confirm" class="form-label">Confirm Password</label>
-                        <div class="input-wrapper">
-                            <input id="password-confirm" type="password" class="form-input" name="password_confirmation"
-                                required autocomplete="new-password" placeholder="Confirm your password">
-                            <div class="input-icon">
-                                <svg viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <button type="button" class="password-toggle" id="toggleConfirmPassword">
-                                <svg class="eye-icon" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                    <path fill-rule="evenodd"
-                                        d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <svg class="eye-slash-icon" viewBox="0 0 20 20" fill="currentColor"
-                                    style="display: none;">
-                                    <path fill-rule="evenodd"
-                                        d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
-                                        clip-rule="evenodd" />
-                                    <path
-                                        d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="password-match" id="password-match">
-                            <!-- Password match status will appear here -->
-                        </div>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="register-button" id="register-button">
-                            <span class="button-icon">
-                                <svg viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                            Create Admin Account
-                        </button>
-                    </div>
-                </form>
-
-                <div class="admin-notice">
-                    <div class="notice-icon">
-                        <svg viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <p>Admin accounts have full access to system management and user data.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <style>
         :root {
             --primary: #2b3990;
@@ -240,150 +22,145 @@
             --white: #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-
-        .admin-register-container {
-            min-height: 100vh;
+        .fullbody {
+            min-height: 85vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #f0f4f8;
             padding: 20px;
         }
 
-        .admin-register-card {
+        .register-container {
             width: 100%;
-            max-width: 480px;
-            background: var(--white);
-            border-radius: 16px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            max-width: 1200px;
+            display: flex;
+            background-color: var(--white);
+            border-radius: 15px;
             overflow: hidden;
-            border: 1px solid var(--gray-200);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .card-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        .register-left {
+            flex: 1;
+            background: linear-gradient(135deg, var(--primary) 0%, #1a236b 100%);
             color: var(--white);
-            padding: 32px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .register-right {
+            flex: 1;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 16px;
+            margin-bottom: 30px;
         }
 
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--secondary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 192, 245, 0.3);
-        }
-
-        .logo-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--white);
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
         }
 
         .logo-text {
-            text-align: left;
+            font-size: 1.8rem;
+            font-weight: 800;
         }
 
-        .main-text {
-            display: block;
-            font-size: 1.25rem;
+        .welcome-text h1 {
+            font-size: 2.5rem;
             font-weight: 800;
+            margin-bottom: 15px;
             line-height: 1.2;
         }
 
-        .sub-text {
-            display: block;
-            font-size: 0.875rem;
+        .welcome-text p {
+            font-size: 1.1rem;
             opacity: 0.9;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-top: 2px;
+            margin-bottom: 30px;
         }
 
-        .card-body {
-            padding: 40px 32px;
+        .features-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list i {
+            color: var(--secondary);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .register-form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .register-header {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 30px;
         }
 
         .register-header h1 {
-            font-size: 1.75rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            color: var(--gray-900);
-            margin-bottom: 8px;
+            color: var(--primary);
+            margin-bottom: 10px;
         }
 
         .register-header p {
-            color: var(--gray-600);
-            font-size: 0.95rem;
-        }
-
-        .register-form {
-            space-y: 24px;
+            color: var(--gray-500);
         }
 
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .form-label {
             display: block;
-            font-size: 0.875rem;
+            margin-bottom: 8px;
             font-weight: 600;
             color: var(--gray-700);
-            margin-bottom: 8px;
         }
 
         .input-wrapper {
             position: relative;
         }
 
-        .form-input {
+        .form-control {
             width: 100%;
-            padding: 14px 16px 14px 48px;
+            padding: 12px 15px 12px 48px;
             border: 2px solid var(--gray-200);
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
-            transition: all 0.3s ease;
-            background: var(--white);
+            transition: all 0.3s;
             font-family: inherit;
         }
 
-        .form-input:focus {
-            outline: none;
+        .form-control:focus {
             border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(0, 192, 245, 0.1);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 192, 245, 0.2);
         }
 
-        .form-input.error {
+        .form-control.is-invalid {
             border-color: var(--error);
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
         }
 
         .input-icon {
@@ -419,65 +196,50 @@
             height: 20px;
         }
 
+        .invalid-feedback {
+            display: block;
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 5px;
+        }
+
         .password-strength {
-            margin-top: 12px;
-        }
-
-        .strength-bar {
-            height: 6px;
-            background: var(--gray-200);
-            border-radius: 3px;
+            margin-top: 5px;
+            height: 5px;
+            border-radius: 5px;
+            background-color: var(--gray-200);
             overflow: hidden;
-            margin-bottom: 6px;
         }
 
-        .strength-fill {
+        .password-strength-bar {
             height: 100%;
-            width: 0%;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .strength-labels {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .strength-label {
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            font-weight: 500;
+            width: 0;
+            transition: width 0.3s, background-color 0.3s;
         }
 
         .password-requirements {
-            margin-top: 12px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--gray-500);
         }
 
         .requirement {
             display: flex;
             align-items: center;
-            font-size: 0.75rem;
-            color: var(--gray-500);
-            transition: color 0.3s ease;
+            margin-bottom: 5px;
+        }
+
+        .requirement i {
+            margin-right: 5px;
+            font-size: 0.7rem;
         }
 
         .requirement.met {
             color: var(--success);
         }
 
-        .requirement-icon {
-            width: 12px;
-            height: 12px;
-            margin-right: 6px;
-            flex-shrink: 0;
-        }
-
-        .requirement.met .requirement-icon {
-            fill: var(--success);
+        .requirement.unmet {
+            color: var(--gray-500);
         }
 
         .password-match {
@@ -505,130 +267,248 @@
             margin-right: 6px;
         }
 
-        .error-message {
-            display: flex;
-            align-items: center;
-            margin-top: 8px;
-            color: var(--error);
-            font-size: 0.875rem;
-            animation: fadeIn 0.3s ease-in-out;
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
         }
 
-        .error-message svg {
-            width: 16px;
-            height: 16px;
-            margin-right: 6px;
-            flex-shrink: 0;
-        }
-
-        .form-actions {
-            margin: 32px 0 24px;
-        }
-
-        .register-button {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 24px;
+        .btn-primary {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(43, 57, 144, 0.3);
         }
 
-        .register-button:hover:not(:disabled) {
+        .btn-primary:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(43, 57, 144, 0.4);
         }
 
-        .register-button:disabled {
+        .btn-primary:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
 
-        .button-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
+        .btn-block {
+            width: 100%;
         }
 
-        .admin-notice {
-            display: flex;
-            align-items: flex-start;
-            padding: 16px;
-            background: var(--gray-50);
-            border-radius: 8px;
-            border: 1px solid var(--gray-200);
+        .register-links {
+            text-align: center;
+            margin-top: 20px;
         }
 
-        .notice-icon {
-            width: 20px;
-            height: 20px;
-            color: var(--warning);
-            margin-right: 12px;
-            flex-shrink: 0;
-            margin-top: 1px;
+        .register-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        .admin-notice p {
-            font-size: 0.875rem;
-            color: var(--gray-600);
-            line-height: 1.5;
+        .register-links a:hover {
+            color: var(--primary);
+            text-decoration: underline;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 480px) {
-            .admin-register-card {
-                max-width: 100%;
-                margin: 0 16px;
-            }
-
-            .card-header {
-                padding: 24px;
-            }
-
-            .card-body {
-                padding: 32px 24px;
-            }
-
-            .logo {
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .register-container {
                 flex-direction: column;
-                text-align: center;
-                gap: 12px;
             }
 
-            .logo-text {
-                text-align: center;
+            .register-left,
+            .register-right {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .fullbody {
+                padding: 10px;
             }
 
-            .password-requirements {
-                grid-template-columns: 1fr;
+            .register-left,
+            .register-right {
+                padding: 30px 20px;
+            }
+
+            .welcome-text h1 {
+                font-size: 2rem;
+            }
+
+            .register-header h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
+    
+    <div class="fullbody">
+        <div class="register-container">
+            <!-- Left Side - Branding & Info -->
+            <div class="register-left">
+                 <div class="logo-img" style="margin-bottom: 30px; text-align: center">
+                    <img src="{{url('assets/dist/img/logo-light.webp')}}" alt="AdminLTELogo" style="width: 218px;">
+                </div>
+                <div class="welcome-text">
+                    <h1>Admin Portal Access</h1>
+                    <p>Create your administrator account to manage the system, users, and content.</p>
+                </div>
+
+                <ul class="features-list">
+                    <li><i class="fas fa-check-circle"></i> Full system administration</li>
+                    <li><i class="fas fa-check-circle"></i> User and role management</li>
+                    <li><i class="fas fa-check-circle"></i> Content and quiz management</li>
+                    <li><i class="fas fa-check-circle"></i> Analytics and reporting</li>
+                    <li><i class="fas fa-check-circle"></i> System configuration</li>
+                </ul>
+            </div>
+
+            <!-- Right Side - Registration Form -->
+            <div class="register-right">
+                <div class="register-form-container">
+                    <div class="register-header">
+                        <h1>Admin Registration</h1>
+                        <p>Set up your administrator credentials</p>
+                    </div>
+
+                    <form method="POST" action="{{ route('admin.register') }}" class="register-form">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name</label>
+                            <div class="input-wrapper">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                                    value="{{ old('name') }}" required autocomplete="name" autofocus
+                                    placeholder="Enter your full name">
+                                <div class="input-icon">
+                                    <svg viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <div class="input-wrapper">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email"
+                                    placeholder="admin@example.com">
+                                <div class="input-icon">
+                                    <svg viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-wrapper">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                                    name="password" required autocomplete="new-password"
+                                    placeholder="Create a strong password">
+                                <div class="input-icon">
+                                    <svg viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <button type="button" class="password-toggle" id="togglePassword">
+                                    <svg class="eye-icon" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                        <path fill-rule="evenodd"
+                                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="eye-slash-icon" viewBox="0 0 20 20" fill="currentColor"
+                                        style="display: none;">
+                                        <path fill-rule="evenodd"
+                                            d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
+                                            clip-rule="evenodd" />
+                                        <path
+                                            d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <div class="password-strength">
+                                <div class="password-strength-bar" id="password-strength-bar"></div>
+                            </div>
+
+                           
+
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="form-label">Confirm Password</label>
+                            <div class="input-wrapper">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
+                                    required autocomplete="new-password" placeholder="Confirm your password">
+                                <div class="input-icon">
+                                    <svg viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <button type="button" class="password-toggle" id="toggleConfirmPassword">
+                                    <svg class="eye-icon" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                        <path fill-rule="evenodd"
+                                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <svg class="eye-slash-icon" viewBox="0 0 20 20" fill="currentColor"
+                                        style="display: none;">
+                                        <path fill-rule="evenodd"
+                                            d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
+                                            clip-rule="evenodd" />
+                                        <path
+                                            d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="password-match" id="password-match"></div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block" id="register-btn">
+                            Create Admin Account
+                        </button>
+
+                        <div class="register-links">
+                            <p>Do you have an account? <a href="{{ route('admin.login') }}">Login here</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -636,9 +516,8 @@
             const confirmPasswordInput = document.getElementById('password-confirm');
             const togglePassword = document.getElementById('togglePassword');
             const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
-            const strengthFill = document.getElementById('password-strength-fill');
-            const strengthText = document.getElementById('strength-text');
-            const registerButton = document.getElementById('register-button');
+            const strengthBar = document.getElementById('password-strength-bar');
+            const registerBtn = document.getElementById('register-btn');
             
             const requirements = {
                 length: document.getElementById('length-req'),
@@ -680,50 +559,60 @@
                 if (password.length >= 8) {
                     strength += 25;
                     metRequirements++;
+                    requirements.length.classList.remove('unmet');
                     requirements.length.classList.add('met');
+                    requirements.length.innerHTML = '<i class="fas fa-check-circle"></i> At least 8 characters';
                 } else {
                     requirements.length.classList.remove('met');
+                    requirements.length.classList.add('unmet');
+                    requirements.length.innerHTML = '<i class="fas fa-circle"></i> At least 8 characters';
                 }
 
                 if (/[A-Z]/.test(password)) {
                     strength += 25;
                     metRequirements++;
+                    requirements.uppercase.classList.remove('unmet');
                     requirements.uppercase.classList.add('met');
+                    requirements.uppercase.innerHTML = '<i class="fas fa-check-circle"></i> One uppercase letter';
                 } else {
                     requirements.uppercase.classList.remove('met');
+                    requirements.uppercase.classList.add('unmet');
+                    requirements.uppercase.innerHTML = '<i class="fas fa-circle"></i> One uppercase letter';
                 }
 
                 if (/[a-z]/.test(password)) {
                     strength += 25;
                     metRequirements++;
+                    requirements.lowercase.classList.remove('unmet');
                     requirements.lowercase.classList.add('met');
+                    requirements.lowercase.innerHTML = '<i class="fas fa-check-circle"></i> One lowercase letter';
                 } else {
                     requirements.lowercase.classList.remove('met');
+                    requirements.lowercase.classList.add('unmet');
+                    requirements.lowercase.innerHTML = '<i class="fas fa-circle"></i> One lowercase letter';
                 }
 
                 if (/[0-9]/.test(password)) {
                     strength += 25;
                     metRequirements++;
+                    requirements.number.classList.remove('unmet');
                     requirements.number.classList.add('met');
+                    requirements.number.innerHTML = '<i class="fas fa-check-circle"></i> One number';
                 } else {
                     requirements.number.classList.remove('met');
+                    requirements.number.classList.add('unmet');
+                    requirements.number.innerHTML = '<i class="fas fa-circle"></i> One number';
                 }
 
                 // Update strength bar
-                strengthFill.style.width = strength + '%';
+                strengthBar.style.width = strength + '%';
                 
                 if (strength < 50) {
-                    strengthFill.style.backgroundColor = '#ef4444';
-                    strengthText.textContent = 'Weak password';
-                    strengthText.style.color = '#ef4444';
+                    strengthBar.style.backgroundColor = '#ef4444';
                 } else if (strength < 75) {
-                    strengthFill.style.backgroundColor = '#f59e0b';
-                    strengthText.textContent = 'Medium password';
-                    strengthText.style.color = '#f59e0b';
+                    strengthBar.style.backgroundColor = '#f59e0b';
                 } else {
-                    strengthFill.style.backgroundColor = '#10b981';
-                    strengthText.textContent = 'Strong password';
-                    strengthText.style.color = '#10b981';
+                    strengthBar.style.backgroundColor = '#10b981';
                 }
 
                 checkFormValidity();
@@ -780,22 +669,31 @@
                 const passwordsMatch = password === confirmPassword && password !== '';
                 
                 if (name && email && password && confirmPassword && metRequirements === 4 && passwordsMatch) {
-                    registerButton.disabled = false;
+                    registerBtn.disabled = false;
                 } else {
-                    registerButton.disabled = true;
+                    registerBtn.disabled = true;
                 }
             }
 
-            // Form input enhancements
-            const inputs = document.querySelectorAll('.form-input');
-            inputs.forEach(input => {
-                input.addEventListener('focus', function() {
-                    this.parentElement.style.boxShadow = '0 0 0 3px rgba(0, 192, 245, 0.1)';
-                });
+            // Form validation
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
                 
-                input.addEventListener('blur', function() {
-                    this.parentElement.style.boxShadow = 'none';
-                });
+                if (password !== confirmPassword) {
+                    e.preventDefault();
+                    alert('Please make sure your passwords match.');
+                    return;
+                }
+                
+                // Check if all requirements are met
+                const requirements = document.querySelectorAll('.requirement.met');
+                if (requirements.length < 4) {
+                    e.preventDefault();
+                    alert('Please make sure your password meets all requirements.');
+                    return;
+                }
             });
 
             // Initial form validation

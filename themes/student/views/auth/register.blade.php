@@ -389,20 +389,7 @@
                                 <div class="password-strength-bar" id="password-strength-bar"></div>
                             </div>
 
-                            <div class="password-requirements">
-                                <div class="requirement unmet" id="length-req">
-                                    <i class="fas fa-circle"></i> At least 8 characters
-                                </div>
-                                <div class="requirement unmet" id="uppercase-req">
-                                    <i class="fas fa-circle"></i> One uppercase letter
-                                </div>
-                                <div class="requirement unmet" id="lowercase-req">
-                                    <i class="fas fa-circle"></i> One lowercase letter
-                                </div>
-                                <div class="requirement unmet" id="number-req">
-                                    <i class="fas fa-circle"></i> One number
-                                </div>
-                            </div>
+                            
 
                             @error('password')
                             <span class="invalid-feedback" role="alert">
